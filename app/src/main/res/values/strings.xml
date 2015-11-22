@@ -11,6 +11,7 @@
     <string name="title_activity_summary_">Summary_Activity</string>
     <string name="title_activity_calender_">Calender_Activity</string>
     <string name="ucsdCollege">UCSD College</string>
+    <string name="selectClass">Select Class Taken</string>
     <string-array name="college_spinner">
         <item>ERC</item>
         <item>Marshall</item>

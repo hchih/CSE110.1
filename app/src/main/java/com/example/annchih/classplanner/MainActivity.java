@@ -18,6 +18,7 @@ import android.widget.Spinner;
 
 
 import com.example.annchih.classplanner.dummy.Calender_Activity;
+import com.parse.Parse;
 
 public class MainActivity extends Activity{
 
@@ -30,7 +31,7 @@ public class MainActivity extends Activity{
 
         if(prefs.getString("college_key",null)!=null && prefs.getString("major_key",null)!=null
                 &&prefs.getString("year_key",null)!=null){
-            Intent intent = new Intent(this,QuarterListView.class);
+            Intent intent = new Intent(this,Select_classesTaken.class);
             this.startActivity(intent);
         }
         super.onCreate(savedInstanceState);
@@ -55,7 +56,7 @@ public class MainActivity extends Activity{
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(MainActivity.this, QuarterListView.class);
+                Intent intent = new Intent(MainActivity.this, Select_classesTaken.class);
                 startActivity(intent);
 
             }

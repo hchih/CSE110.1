@@ -8,17 +8,25 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Spinner;
 import com.example.annchih.classplanner.dummy.Calender_Activity;
+import com.parse.Parse;
+import com.parse.ParseObject;
+
 
 /**
  * Created by AnnChih on 11/7/15.
  */
 public class QuarterListView extends Activity {
+
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
+
+
+
         }
         @Override
         public boolean onCreateOptionsMenu(Menu menu) {
@@ -43,7 +51,7 @@ public class QuarterListView extends Activity {
         }
 
         public void classesTaken(View view) {
-            Intent intent = new Intent(this, ItemListActivity.class);
+            Intent intent = new Intent(this, ClassList.class);
 //        EditText editText = (EditText) findViewById(R.id.edit_message);
 //        String message = editText.getText().toString();
 //        intent.putExtra(EXTRA_MESSAGE, message);
