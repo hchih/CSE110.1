@@ -17,6 +17,7 @@ import com.parse.ParseQueryAdapter;
 
 /**
  * Created by AnnChih on 11/7/15.
+ *   TODO: check for class taken, should have the list of every class.
  */
 public class Select_classesTaken extends Activity {
 
