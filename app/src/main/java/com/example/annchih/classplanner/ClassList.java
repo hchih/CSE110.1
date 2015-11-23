@@ -2,8 +2,12 @@ package com.example.annchih.classplanner;
 
 import android.app.Activity;
 import android.app.ListActivity;
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -22,54 +26,71 @@ import java.util.List;
  * Created by AnnChih on 11/21/15.
  */
 public class ClassList extends Activity {
+    List<ParseObject> ob;
+    ListViewAdapter2 adapter;
+    ProgressDialog mProgressDialog;
+    private List<ClassData> list_of_classes = null;
+    ListView listview;
 
-    List<ClassPlanner> list_of_classes = new ArrayList<ClassPlanner>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.classlistview);
 
-        Parse.enableLocalDatastore(this);
-
-        Parse.initialize(this, "nfKldYlgBloXoaCzcFtkZgVQFP4soJiohABrIX1o", "cX8HgSU6t03OqGMnsreTHYcSKLGxV8D0sAonyZ9v");
-
-        ParseObject.registerSubclass(ClassPlanner.class);
-
-        ParseQuery<ClassPlanner> query= new ParseQuery<ClassPlanner>("classplanner");
-
-        query.findInBackground(new FindCallback<ClassPlanner>() {
-            @Override
-            public void done(List<ClassPlanner> list, ParseException e) {
-                if (e != null){
-                    Toast.makeText(ClassList.this, "Error " + e, Toast.LENGTH_SHORT ).show();
-                }
-                for (ClassPlanner classPlanner : list){
-                    ClassPlanner newclass = new ClassPlanner();
-                    newclass.set_class_id(classPlanner.get_class_id());
-                    newclass.set_class_name(classPlanner.get_class_name());
-                    list_of_classes.add(newclass);
-                }
-
-                ArrayAdapter<ClassPlanner> adapter = new ArrayAdapter<ClassPlanner>(ClassList.this,
-                            android.R.layout.simple_list_item_1, list_of_classes);
-
-                ListView listView = (ListView)findViewById(R.id.class_list);
-                listView.setAdapter(adapter);
-            }
-        });
-
-
-        /*mainAdapter = new ParseQueryAdapter<ParseObject>(this, "classplanner");
-        mainAdapter.setTextKey("class_id");
-        mainAdapter.setTextKey("class_title");
-
-        classAdapter = new CustomAdapter(this);
-
-        listView = (ListView) findViewById(R.id.class_list);
-        listView.setAdapter(mainAdapter);
-        mainAdapter.loadObjects();*/
-
-
+        new RemoteDataTask().execute();
     }
+
+    // RemoteDataTask AsyncTask
+    private class RemoteDataTask extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            // Create a progressdialog
+            mProgressDialog = new ProgressDialog(ClassList.this);
+            // Set progressdialog message
+            //mProgressDialog.setTitle("Class Planner");
+            //mProgressDialog.setMessage("Loading...");
+            mProgressDialog.setIndeterminate(false);
+            // Show progressdialog
+            mProgressDialog.show();
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            // Create the array
+            //Log.d("I am here!","got it");
+            list_of_classes = new ArrayList<ClassData>();
+            try {
+                // Locate the class table named "Country" in Parse.com
+                ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(
+                        "classplanner");
+                ob = query.find();
+                for (ParseObject classplanner : ob) {
+                    ClassData new_class = new ClassData();
+                    new_class.set_class_id_2((String) classplanner.get("class_id"));
+                    new_class.set_class_name_2((String) classplanner.get("class_name"));
+                    list_of_classes.add(new_class);
+
+                }
+            }  catch (com.parse.ParseException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            // Locate the listview in listview_main.xml
+            listview = (ListView) findViewById(R.id.class_list);
+            // Pass the results into ListViewAdapter.java
+            adapter = new ListViewAdapter2(ClassList.this, list_of_classes);
+            // Binds the Adapter to the ListView
+            listview.setAdapter(adapter);
+            // Close the progressdialog
+
+            mProgressDialog.dismiss();
+        }
+    }
+
 }
