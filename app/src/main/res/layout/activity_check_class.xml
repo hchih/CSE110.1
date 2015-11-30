@@ -10,7 +10,10 @@
         android:layout_height="wrap_content"
         android:text="@string/selectClass"
         android:gravity="center"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:textColor="#ebae23"
+        />
     <ListView
         android:id="@+id/list"
         android:layout_width="match_parent"
@@ -27,6 +30,8 @@
         android:gravity="center"
         android:layout_centerInParent="true"
         android:onClick="toQuarterListView"
+        android:background="#016691"
+        android:textColor="#FFFFFFFF"
         />
 
 </RelativeLayout>

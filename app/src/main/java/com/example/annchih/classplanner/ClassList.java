@@ -27,14 +27,13 @@ import java.util.List;
  */
 public class ClassList extends Activity {
     List<ParseObject> ob;
-    ListViewAdapter2 adapter;
+    ListAdapter2 adapter;
     ProgressDialog mProgressDialog;
     private List<ClassData> list_of_classes = null;
     ListView listview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.classlistview);
 
@@ -46,6 +45,7 @@ public class ClassList extends Activity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+
             // Create a progressdialog
             mProgressDialog = new ProgressDialog(ClassList.this);
             // Set progressdialog message
@@ -70,6 +70,7 @@ public class ClassList extends Activity {
                     ClassData new_class = new ClassData();
                     new_class.set_class_id_2((String) classplanner.get("class_id"));
                     new_class.set_class_name_2((String) classplanner.get("class_name"));
+                    new_class.set_description((String) classplanner.get("description"));
                     list_of_classes.add(new_class);
 
                 }
@@ -84,7 +85,7 @@ public class ClassList extends Activity {
             // Locate the listview in listview_main.xml
             listview = (ListView) findViewById(R.id.class_list);
             // Pass the results into ListViewAdapter.java
-            adapter = new ListViewAdapter2(ClassList.this, list_of_classes);
+            adapter = new ListAdapter2(ClassList.this, list_of_classes);
             // Binds the Adapter to the ListView
             listview.setAdapter(adapter);
             // Close the progressdialog
