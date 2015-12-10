@@ -23,7 +23,7 @@ import java.util.List;
  */
 public class Select_classesTaken extends Activity {
     List<ParseObject> ob;
-    ListAdapter2 adapter;
+    ListViewAdapter adapter;
     ProgressDialog mProgressDialog;
     private List<ClassData> list_of_classes = null;
     ListView listview;
@@ -79,7 +79,7 @@ public class Select_classesTaken extends Activity {
             // Locate the listview in listview_main.xml
             listview = (ListView) findViewById(R.id.list);
             // Pass the results into ListViewAdapter.java
-            adapter = new ListAdapter2(Select_classesTaken.this,
+            adapter = new ListViewAdapter(Select_classesTaken.this,
                     list_of_classes);
             // Binds the Adapter to the ListView
             listview.setAdapter(adapter);

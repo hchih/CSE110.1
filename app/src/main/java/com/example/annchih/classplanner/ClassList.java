@@ -27,7 +27,7 @@ import java.util.List;
  */
 public class ClassList extends Activity {
     List<ParseObject> ob;
-    ListAdapter2 adapter;
+    ListViewAdapter adapter;
     ProgressDialog mProgressDialog;
     private List<ClassData> list_of_classes = null;
     ListView listview;
@@ -85,7 +85,7 @@ public class ClassList extends Activity {
             // Locate the listview in listview_main.xml
             listview = (ListView) findViewById(R.id.class_list);
             // Pass the results into ListViewAdapter.java
-            adapter = new ListAdapter2(ClassList.this, list_of_classes);
+            adapter = new ListViewAdapter(ClassList.this, list_of_classes);
             // Binds the Adapter to the ListView
             listview.setAdapter(adapter);
             // Close the progressdialog

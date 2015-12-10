@@ -31,11 +31,6 @@
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity
-            android:name=".Summary_Activity"
-            android:label="@string/title_activity_summary_"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
-        <activity
             android:name=".Select_classesTaken"
             android:label="@string/title_activity_summary_"
             android:theme="@style/AppTheme.NoActionBar" >
