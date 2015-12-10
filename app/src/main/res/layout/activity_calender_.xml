@@ -26,22 +26,34 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#FFFFFFFF"
+            android:background="#ebae23"
             android:layout_weight="0.25"
+            android:layout_marginRight="3dp"
             android:text="@string/fall"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="#ebae23"
             android:layout_weight="0.25"
+            android:textColor="#FFFFFFFF"
+            android:layout_marginRight="3dp"
             android:text="@string/winter"/>
         <Button
             android:layout_width="wrap_content"
+            android:background="#ebae23"
             android:layout_height="wrap_content"
+            android:layout_marginRight="3dp"
+            android:textColor="#FFFFFFFF"
             android:layout_weight="0.25"
             android:text="@string/spring"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="3dp"
+            android:textColor="#FFFFFFFF"
             android:layout_weight="0.25"
+            android:background="#ebae23"
             android:text="@string/summer"/>
     </LinearLayout>
 
@@ -54,6 +66,8 @@
             android:text="@string/addclass"
             android:layout_alignParentBottom="true"
             android:onClick="classesTaken"
+            android:background="#016691"
+            android:textColor="#FFFFFFFF"
             android:id="@+id/button" />
 
         <LinearLayout
@@ -70,7 +84,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/quarterListView"
-                android:layout_gravity="center_vertical"
                 android:layout_weight="1" />
         </LinearLayout>
     </RelativeLayout>

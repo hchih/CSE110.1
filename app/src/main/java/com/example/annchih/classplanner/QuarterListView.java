@@ -45,17 +45,11 @@ public class QuarterListView extends Activity {
 
         public void classesTaken(View view) {
             Intent intent = new Intent(this, ClassList.class);
-//        EditText editText = (EditText) findViewById(R.id.edit_message);
-//        String message = editText.getText().toString();
-//        intent.putExtra(EXTRA_MESSAGE, message);
             startActivity(intent);
         }
 
         public void calenderPlanner(View view) {
             Intent intent = new Intent(this, Calender_Activity.class);
-//        EditText editText = (EditText) findViewById(R.id.edit_message);
-//        String message = editText.getText().toString();
-//        intent.putExtra(EXTRA_MESSAGE, message);
             startActivity(intent);
         }
 

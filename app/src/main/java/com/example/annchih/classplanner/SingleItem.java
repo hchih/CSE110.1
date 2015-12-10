@@ -4,7 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.parse.ParseException;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 
 public class SingleItem extends Activity {
@@ -15,7 +19,7 @@ public class SingleItem extends Activity {
     String id;
     String title;
     String description;
-
+    private LocalPlanner localPlanner;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +44,31 @@ public class SingleItem extends Activity {
         txtdescription.setText(description);
     }
     public void toQuarter(View view) {
-        Intent intent = new Intent(this, Calender_Activity.class);
-        startActivity(intent);
+        Intent i = new Intent(this, Calender_Activity.class);
+        localPlanner = new LocalPlanner();
+        localPlanner.setID(txtid.getText().toString());
+        localPlanner.setTitle(txttitle.getText().toString());
+        localPlanner.setDraft(true);
+        localPlanner.setAuthor(ParseUser.getCurrentUser());
+        localPlanner.pinInBackground("Class Planned",
+                new SaveCallback() {
+                    @Override
+                    public void done(ParseException e) {
+                        if (isFinishing()) {
+                            return;
+                        }
+                        if (e == null) {
+                            setResult(Activity.RESULT_OK);
+                            finish();
+                        } else {
+                            Toast.makeText(getApplicationContext(),
+                                    "Error saving: " + e.getMessage(),
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                });
+        //localPlanner.saveEventually();
+        startActivity(i);
     }
 }

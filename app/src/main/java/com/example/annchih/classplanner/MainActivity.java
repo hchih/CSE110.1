@@ -18,11 +18,11 @@ public class MainActivity extends Activity{
         SharedPreferences prefs = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
 
-        if(prefs.getString("college_key",null)!=null && prefs.getString("major_key",null)!=null
+        /*if(prefs.getString("college_key",null)!=null && prefs.getString("major_key",null)!=null
                 &&prefs.getString("year_key",null)!=null){
             Intent intent = new Intent(this,Select_classesTaken.class);
             this.startActivity(intent);
-        }
+        }*/
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first);
         Spinner college_spinner = (Spinner) findViewById(R.id.college_spinner);
